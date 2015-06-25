@@ -1,6 +1,6 @@
 # Telegram Bot #
 A sample telegram bot using the API telegram-bot that does everything. 
-## derived from https://github.com/asdofindia/node-telegrambot
+derived from https://github.com/asdofindia/node-telegrambot 
 
 ## Installation ##
 
