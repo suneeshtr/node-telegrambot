@@ -2,7 +2,6 @@ var irc = require('irc');
 var events = require('events');
 var eventEmitter = new events.EventEmitter;
 var utils = require('./utils');
-var config = require('./config');
 
 module.exports = function(){
     var self=this;
@@ -11,7 +10,7 @@ module.exports = function(){
         eventEmitter.emit('ircmsg', message)
     };
     this.initialize = function(){
-        self.freebot = new irc.Client('chat.freenode.net', 'node-telegrambot', {
+        self.freebot = new irc.Client('chat.freenode.net', 'nickname', {
             channels: ["#test"],
             port: 8001,
             debug: true,
@@ -29,12 +28,20 @@ module.exports = function(){
         });
     };
     this.receiver = function(message){
-        // console.log("irc receiver taking over message "+message.text)
-        if (config.tg[message.chat.id]){
-          var to = config.tg[message.chat.id];
-          if (to[0]=="freenode"){
-            self.freebot.say(to[1], irc.colors.wrap("dark_red",utils.gettgname(message)) + ": " + message.text);
-          }
+        var rec;
+        if(message.text.indexOf("@") == 0){
+            rec = message.text.substring(1,message.text.indexOf(" "))
+            message.text = message.text.substring(message.text.indexOf(" ")+1,message.text.length)
+        }else
+        if(message.text.indexOf("#") == 0){
+            rec = message.text.substring(0,message.text.indexOf(" "))
+            message.text = message.text.substring(message.text.indexOf(" ")+1,message.text.length)
+        }else{
+            rec = "#test"
         }
+        console.log("id",rec);
+        // console.log("irc receiver taking over message "+message.text)
+        self.freebot.say(["freenode", rec], irc.colors.wrap("dark_red",utils.gettgname(message)) + ": " + message.text);
     };
 }
+
