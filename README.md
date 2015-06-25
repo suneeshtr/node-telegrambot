@@ -1,10 +1,12 @@
 # Telegram Bot #
 A sample telegram bot using the new API (webhooks) that does everything. I know it is a mess, but it lets you learn how the API works
 
+# derived from https://github.com/asdofindia/node-telegrambot
+
 ## Installation ##
 
 ```
-git clone https://github.com/asdofindia/node-telegrambot
+git clone https://github.com/suneeshtr/node-telegrambot
 cd node-telegrambot
 npm install
 ```
@@ -13,7 +15,7 @@ npm install
 
 * Get your bot token from [@botfather](https://telegram.me/botfather). This will be TG_TOKEN
 * Get a domain with SSL (Telegram webhooks won't work on localhost, local IP addresses, or self signed certificates). This domain name (without https, or trailing slash) will be APP_DNS (eg: telegrambot.example.com )
-* export TG_TOKEN="123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11:" APP_DNS="telegrambot.example.com" && node server.js
+* export TG_TOKEN="123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11:" && node server.js
 
 ## IRC integration ##
 
