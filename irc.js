@@ -11,7 +11,7 @@ module.exports = function(){
     };
     this.initialize = function(){
         self.freebot = new irc.Client('chat.freenode.net', 'nickname', {
-            channels: ["#test"],
+            channels: ["#test_1","#test_2"],
             port: 8001,
             debug: true,
             secure: false,
@@ -29,19 +29,18 @@ module.exports = function(){
     };
     this.receiver = function(message){
         var rec;
-        if(message.text.indexOf("@") == 0){
+        if(message.text.indexOf("!") == 0){
             rec = message.text.substring(1,message.text.indexOf(" "))
-            message.text = message.text.substring(message.text.indexOf(" ")+1,message.text.length)
+            msg = message.text.substring(1,message.text.length)
         }else
         if(message.text.indexOf("#") == 0){
             rec = message.text.substring(0,message.text.indexOf(" "))
-            message.text = message.text.substring(message.text.indexOf(" ")+1,message.text.length)
+            msg = message.text.substring(message.text.indexOf(" ")+1,message.text.length)
         }else{
-            rec = "#test"
+            rec = "#test_1"
         }
         console.log("id",rec);
         // console.log("irc receiver taking over message "+message.text)
-        self.freebot.say(["freenode", rec], irc.colors.wrap("dark_red",utils.gettgname(message)) + ": " + message.text);
+        self.freebot.say(["freenode", rec], irc.colors.wrap("dark_red",utils.gettgname(message)) + ": " + msg);
     };
 }
-

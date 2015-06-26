@@ -4,7 +4,7 @@ var mainModule = new Object();
 
 var irc_tg = function (msg,tg) {
   tg.sendMessage({
-    text: msg.from+" : "+msg.text,
+    text: msg.from+" : "+msg.text+" ("+msg.to+")",
     chat_id: 1234567
   });
 }
