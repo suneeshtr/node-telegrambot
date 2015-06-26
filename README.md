@@ -20,6 +20,8 @@ npm install
 
 One of the features of the bot is its irc integration. Set the corresponding values in irc.js to log all messages from a telegram channel into an IRC channel and vice versa. Be careful not to use popular channels and get banned. 
 
+## use !nickname for irc personal chat && #group_name for send message to joined specific group ##
+
 ## Problems ##
 
 If you've problems, ask me in [this group](https://telegram.me/joinchat/0057c03c01c17626398ee30a57fa166a)
